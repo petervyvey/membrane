@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2973FE44-F534-4629-B584-88616291CEB2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Membrane.Service.ApplicationService</RootNamespace>
+    <AssemblyName>Membrane.Service.ApplicationService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Binaries.CLR\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Binaries.CLR\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataPortal.cs" />
+    <Compile Include="DemoValuePortal.cs" />
+    <Compile Include="IDataPortal.cs" />
+    <Compile Include="NonTransactionalUnitOfWork.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransactionalUnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Membrane.DataTransfer.Projection\Membrane.DataTransfer.Projection.csproj">
+      <Project>{4799f7c3-c1c4-46e0-ab33-62dcfaa036ff}</Project>
+      <Name>Membrane.DataTransfer.Projection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.DataTransfer\Membrane.DataTransfer.csproj">
+      <Project>{1fb3f800-5439-4c2b-8b46-c28997563c9d}</Project>
+      <Name>Membrane.DataTransfer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Domain.Agent.Contract\Membrane.Domain.Agent.Contract.csproj">
+      <Project>{bb68126c-ab38-4191-bbac-b9da9acb7517}</Project>
+      <Name>Membrane.Domain.Agent.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Domain.Entity\Membrane.Domain.Entity.csproj">
+      <Project>{26562c86-8f08-4513-88ba-66f430ebb7b5}</Project>
+      <Name>Membrane.Domain.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Foundation.Contract\Membrane.Foundation.Contract.csproj">
+      <Project>{8d6ed72a-d009-41d2-98eb-d34acf6c695d}</Project>
+      <Name>Membrane.Foundation.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Foundation.Extension\Membrane.Foundation.Extension.csproj">
+      <Project>{cf7e7844-feec-4016-a8a0-ee10cd6fa62c}</Project>
+      <Name>Membrane.Foundation.Extension</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Foundation.Pattern\Membrane.Foundation.Pattern.csproj">
+      <Project>{f16085db-c23b-4e8d-9282-66b2154e997a}</Project>
+      <Name>Membrane.Foundation.Pattern</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Foundation\Membrane.Foundation.csproj">
+      <Project>{0c7f5cbe-b229-4421-871b-f2a3fda0e340}</Project>
+      <Name>Membrane.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Infrastructure\Membrane.Infrastructure.csproj">
+      <Project>{059b9989-ec7d-4ff4-af91-396333635016}</Project>
+      <Name>Membrane.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DAB192F8-AA9D-427C-8E49-7071662E8EF9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Membrane.Infrastructure.Configuration</RootNamespace>
+    <AssemblyName>Membrane.Infrastructure.Configuration</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Binaries.CLR\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Binaries.CLR\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetOpenAuth, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.Ultimate.4.3.0.13117\lib\net45-full\DotNetOpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigurationModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Membrane.DataTransfer\Membrane.DataTransfer.csproj">
+      <Project>{1fb3f800-5439-4c2b-8b46-c28997563c9d}</Project>
+      <Name>Membrane.DataTransfer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Domain.Agent.Contract\Membrane.Domain.Agent.Contract.csproj">
+      <Project>{bb68126c-ab38-4191-bbac-b9da9acb7517}</Project>
+      <Name>Membrane.Domain.Agent.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Domain.Agent.NHibernate\Membrane.Domain.Agent.NHibernate.csproj">
+      <Project>{e33c8a03-4503-4b3d-9ae4-cf9933ec5b31}</Project>
+      <Name>Membrane.Domain.Agent.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Domain.Persistence.Contract\Membrane.Domain.Persistence.Contract.csproj">
+      <Project>{2a1e2490-2186-4e05-acf6-bd670544418f}</Project>
+      <Name>Membrane.Domain.Persistence.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Domain.Persistence\Membrane.Domain.Persistence.csproj">
+      <Project>{9879da61-ff7e-435e-b5f2-ec620adfa361}</Project>
+      <Name>Membrane.Domain.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Domain.Store.Contract\Membrane.Domain.Store.Contract.csproj">
+      <Project>{24e3e3be-8f4c-462d-a02c-3f5e3092c187}</Project>
+      <Name>Membrane.Domain.Store.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Domain.Store.NHibernate\Membrane.Domain.Store.NHibernate.csproj">
+      <Project>{6b75ba52-1e6a-48e3-9629-3ece3da47e86}</Project>
+      <Name>Membrane.Domain.Store.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Foundation.Contract\Membrane.Foundation.Contract.csproj">
+      <Project>{8d6ed72a-d009-41d2-98eb-d34acf6c695d}</Project>
+      <Name>Membrane.Foundation.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Foundation.Pattern\Membrane.Foundation.Pattern.csproj">
+      <Project>{f16085db-c23b-4e8d-9282-66b2154e997a}</Project>
+      <Name>Membrane.Foundation.Pattern</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Foundation\Membrane.Foundation.csproj">
+      <Project>{0c7f5cbe-b229-4421-871b-f2a3fda0e340}</Project>
+      <Name>Membrane.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Service.ApplicationService\Membrane.Service.ApplicationService.csproj">
+      <Project>{2973fe44-f534-4629-b584-88616291ceb2}</Project>
+      <Name>Membrane.Service.ApplicationService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Web\Membrane.Web.csproj">
+      <Project>{0ec10d0c-efc6-4747-bbe7-cf2e889a66fb}</Project>
+      <Name>Membrane.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

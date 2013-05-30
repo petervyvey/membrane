@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0C7F5CBE-B229-4421-871B-F2A3FDA0E340}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Membrane.Foundation</RootNamespace>
+    <AssemblyName>Membrane.Foundation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Binaries.CLR\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Binaries.CLR\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\ApplicationModelConfiguration.cs" />
+    <Compile Include="Configuration\Client.cs" />
+    <Compile Include="Configuration\ConfigurationModel.cs" />
+    <Compile Include="Configuration\DataSource.cs" />
+    <Compile Include="Configuration\Environment.cs" />
+    <Compile Include="Configuration\Environments.cs" />
+    <Compile Include="Configuration\KeyValue.cs" />
+    <Compile Include="Configuration\Preloader.cs" />
+    <Compile Include="Configuration\Preloaders.cs" />
+    <Compile Include="Configuration\Server.cs" />
+    <Compile Include="Configuration\Settings.cs" />
+    <Compile Include="Configuration\TypeElement.cs" />
+    <Compile Include="ExceptionManagement\ApplicationModelConfigurationException.cs" />
+    <Compile Include="ExceptionManagement\ApplicationServiceException.cs" />
+    <Compile Include="ExceptionManagement\SecurityException.cs" />
+    <Compile Include="ExceptionManagement\SessionException.cs" />
+    <Compile Include="Model\ApplicationModel.cs" />
+    <Compile Include="Model\Identifier.cs" />
+    <Compile Include="Model\Session.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runtime\Caching\Cache.cs" />
+    <Compile Include="Runtime\Security\IPasswordGeneratorStrategy.cs" />
+    <Compile Include="Runtime\Security\PasswordGenerator.cs" />
+    <Compile Include="Runtime\Security\PronounceablePasswordStrategy.cs" />
+    <Compile Include="Runtime\Security\PronounceablePasswordStrategy.GpwData.cs" />
+    <Compile Include="Runtime\Security\RandomPasswordStrategy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Membrane.Foundation.Contract\Membrane.Foundation.Contract.csproj">
+      <Project>{8d6ed72a-d009-41d2-98eb-d34acf6c695d}</Project>
+      <Name>Membrane.Foundation.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Foundation.Extension\Membrane.Foundation.Extension.csproj">
+      <Project>{cf7e7844-feec-4016-a8a0-ee10cd6fa62c}</Project>
+      <Name>Membrane.Foundation.Extension</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Foundation.Pattern\Membrane.Foundation.Pattern.csproj">
+      <Project>{f16085db-c23b-4e8d-9282-66b2154e997a}</Project>
+      <Name>Membrane.Foundation.Pattern</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

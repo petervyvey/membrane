@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2A1E2490-2186-4E05-ACF6-BD670544418F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Membrane.Domain.Persistence.Contract</RootNamespace>
+    <AssemblyName>Membrane.Domain.Persistence.Contract</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Binaries.CLR\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Binaries.CLR\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IOAuth2UserIdentityRepository.cs" />
+    <Compile Include="IIdentityRepository.cs" />
+    <Compile Include="IOAuth2UserScopeRepository.cs" />
+    <Compile Include="IOAuth2ScopeRepository.cs" />
+    <Compile Include="IOAuth2UserRepository.cs" />
+    <Compile Include="IOAuth2ClientApplicationRepository.cs" />
+    <Compile Include="IOAuth2CryptoKeyRepository.cs" />
+    <Compile Include="IDemoValueRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Membrane.Domain.Entity\Membrane.Domain.Entity.csproj">
+      <Project>{26562c86-8f08-4513-88ba-66f430ebb7b5}</Project>
+      <Name>Membrane.Domain.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Domain.Store.Contract\Membrane.Domain.Store.Contract.csproj">
+      <Project>{24e3e3be-8f4c-462d-a02c-3f5e3092c187}</Project>
+      <Name>Membrane.Domain.Store.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Foundation.Contract\Membrane.Foundation.Contract.csproj">
+      <Project>{8d6ed72a-d009-41d2-98eb-d34acf6c695d}</Project>
+      <Name>Membrane.Foundation.Contract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

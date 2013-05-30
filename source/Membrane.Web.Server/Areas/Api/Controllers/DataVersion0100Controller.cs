@@ -88,7 +88,7 @@ namespace Membrane.Web.Public.Areas.Api.Controllers
 				try
 				{
 					HttpRequestAgent connector = new HttpRequestAgent();
-					//string value = connector.Post("https://brutnet.attentia.be/GetBrutoNettoBerekening?onlyValidate=true", parameters);
+					//string value = await connector.PostAsync("https://brutnet.attentia.be/GetBrutoNettoBerekening?onlyValidate=true", parameters);
 					string value = "{ \"Bruto\": \"2500.0\", \"Netto\": \"1250.00\" }";
 
 					if (string.IsNullOrEmpty(value)) HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;

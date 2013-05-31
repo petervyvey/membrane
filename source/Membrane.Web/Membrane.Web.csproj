@@ -34,6 +34,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DotNetOpenAuth.Ultimate.4.3.0.13117\lib\net45-full\DotNetOpenAuth.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
@@ -64,6 +68,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Membrane.DataTransfer.Projection\Membrane.DataTransfer.Projection.csproj">
+      <Project>{4799f7c3-c1c4-46e0-ab33-62dcfaa036ff}</Project>
+      <Name>Membrane.DataTransfer.Projection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.DataTransfer\Membrane.DataTransfer.csproj">
+      <Project>{1fb3f800-5439-4c2b-8b46-c28997563c9d}</Project>
+      <Name>Membrane.DataTransfer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Membrane.Domain.Agent.Contract\Membrane.Domain.Agent.Contract.csproj">
       <Project>{bb68126c-ab38-4191-bbac-b9da9acb7517}</Project>
       <Name>Membrane.Domain.Agent.Contract</Name>

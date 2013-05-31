@@ -12,6 +12,8 @@ using DotNetOpenAuth.OpenId.Provider;
 using Membrane.Domain.Agent;
 using Membrane.Domain.Entity;
 using Membrane.Foundation.Pattern.Creational;
+using Newtonsoft.Json;
+using Membrane.DataTransfer.Projection;
 
 namespace Membrane.Web.OAuth
 {
@@ -143,7 +145,9 @@ namespace Membrane.Web.OAuth
         {
 			AuthorizationServerAccessToken accessToken = new AuthorizationServerAccessToken();
 			accessToken.Lifetime = TimeSpan.FromMinutes(5);
-			accessToken.Lifetime = TimeSpan.FromSeconds(20);
+			accessToken.ExtraData.Add("userIdentity", "{ user: \"some identity\" }");
+
+			//accessToken.Lifetime = TimeSpan.FromSeconds(20);
             accessToken.ResourceServerEncryptionKey = CreateRsaCryptoServiceProvider(ResourceServerEncryptionPublicKey);
 			accessToken.AccessTokenSigningKey = CreateRsaCryptoServiceProvider(AuthorizationServerSigningPrivateKey);
 
@@ -206,26 +210,31 @@ namespace Membrane.Web.OAuth
         /// <returns>
         /// A value that describes the result of the authorization check.
         /// </returns>
-        public AutomatedUserAuthorizationCheckResponse CheckAuthorizeResourceOwnerCredentialGrant(string userName, string password, IAccessTokenRequest accessRequest)
-        {
+		public AutomatedUserAuthorizationCheckResponse CheckAuthorizeResourceOwnerCredentialGrant(string userName, string password, IAccessTokenRequest accessRequest)
+		{
 			IOAuth2AuthorizationStoreAgent agent = DependencyInjection.Get<IOAuth2AuthorizationStoreAgent>();
 			var user = agent.GetUser(userName, password);
 
-            // We use a fixed username and password to determine if the username/password combination is correct.
-            var userCredentialsAreCorrect = user != null;
+			// We use a fixed username and password to determine if the username/password combination is correct.
+			var userCredentialsAreCorrect = user != null;
 
 			// Add the user's scopes.
 			IList<OAuth2Scope> scopes = agent.GetUserScopes(userName);
-			scopes.Select(x=>x.Code).ToList().ForEach(x =>
+			scopes.Select(x => x.Code).ToList().ForEach(x =>
 				{
 					accessRequest.Scope.Add(x);
 				});
 
-            // The token request is approved when the user credentials are correct and the user is authorized for the requested scopes
-            var isApproved = userCredentialsAreCorrect && UserIsAuthorizedForRequestedScopes(userName, accessRequest.Scope);
+			OAuth2UserIdentity userIdentity = agent.GetUserIdentity(userName);
+			var _userIdentity = userIdentity.ToDataTransferValue();
+			accessRequest.ExtraData.Add(new KeyValuePair<string, string>("userIdentity", JsonConvert.SerializeObject(_userIdentity)));
 
-            return new AutomatedUserAuthorizationCheckResponse(accessRequest, isApproved, userName);
-        }
+
+			// The token request is approved when the user credentials are correct and the user is authorized for the requested scopes
+			var isApproved = userCredentialsAreCorrect && UserIsAuthorizedForRequestedScopes(userName, accessRequest.Scope);
+
+			return new AutomatedUserAuthorizationCheckResponse(accessRequest, isApproved, userName);
+		}
 
         /// <summary>
         /// Determines whether an access token request given a client credential grant should be authorized

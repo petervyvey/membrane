@@ -74,12 +74,12 @@ namespace Membrane.Web.Public.Areas.Api.Controllers
 				}
 			}
 
-			return this.Json(response, JsonRequestBehavior.AllowGet);
+			return this.Json(response);
 		}
 
 		[HttpPost]
 		[OAuth2Authorization]
-		public async Task<JsonResult> CalculateBrutoNetto(dynamic parameters)
+		public JsonResult CalculateBrutoNetto(dynamic parameters)
 		{
 			ServiceResponse response = default(ServiceResponse);
 
@@ -88,8 +88,8 @@ namespace Membrane.Web.Public.Areas.Api.Controllers
 				try
 				{
 					HttpRequestAgent connector = new HttpRequestAgent();
-					//string value = await connector.PostAsync("https://brutnet.attentia.be/GetBrutoNettoBerekening?onlyValidate=true", parameters);
-					string value = "{ \"Bruto\": \"2500.0\", \"Netto\": \"1250.00\" }";
+					string value = connector.Post("https://brutnet.attentia.be/GetBrutoNettoBerekening?onlyValidate=true", parameters);
+					//string value = "{ \"Bruto\": \"2500.0\", \"Netto\": \"1250.00\" }";
 
 					if (string.IsNullOrEmpty(value)) HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
 					ResponseStatus status = string.IsNullOrEmpty(value) ? ResponseStatus.NO_DATA : ResponseStatus.OK;
@@ -103,7 +103,7 @@ namespace Membrane.Web.Public.Areas.Api.Controllers
 				}
 			}
 
-			return this.Json(response, JsonRequestBehavior.AllowGet);
+			return this.Json(response);
 		}
 
 

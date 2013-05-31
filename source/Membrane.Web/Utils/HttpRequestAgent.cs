@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Membrane.Web.Utils
 {
@@ -17,7 +18,7 @@ namespace Membrane.Web.Utils
         /// </summary>
         /// <param name="url">The service endpoint URL.</param>
         /// <returns>The service method response.</returns>
-        public async Task<string> GetAsync(string url)
+        public string Getc(string url)
         {
             // Used to build entire response
             StringBuilder builder = new StringBuilder();
@@ -29,7 +30,7 @@ namespace Membrane.Web.Utils
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 
             // Execute the request.
-			string result = await HttpRequestAgent.ExecuteRequestAsync(request);
+			string result = HttpRequestAgent.ExecuteRequest(request);
 
             return result;
         }
@@ -40,7 +41,7 @@ namespace Membrane.Web.Utils
 		/// <param name="url">The service endpoint URL.</param>
 		/// <param name="json">The JSON string.</param>
 		/// <returns>The service method response.</returns>
-        public async Task<string> PostAsync(string url, string json)
+        public string Post(string url, string json)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 
@@ -60,7 +61,7 @@ namespace Membrane.Web.Utils
             writer.Close();
 
 			// Execute the request.
-			string result = await HttpRequestAgent.ExecuteRequestAsync(request);
+			string result = HttpRequestAgent.ExecuteRequest(request);
 
             return result;
         }
@@ -70,7 +71,7 @@ namespace Membrane.Web.Utils
 		/// </summary>
 		/// <param name="request">The <see cref="HttpWebRequest"/>.</param>
 		/// <returns>The HTTP response string.</returns>
-		private async static Task<string> ExecuteRequestAsync(HttpWebRequest request)
+		private static string ExecuteRequest(HttpWebRequest request)
 		{
 			string result = string.Empty;
 
@@ -80,7 +81,7 @@ namespace Membrane.Web.Utils
 			// Used on each read operation
 			byte[] buffer = new byte[8192];
 
-			using (WebResponse response = await (Task<WebResponse>)request.GetResponseAsync())
+			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
 			{
 				// Read data via the response stream.
 				using (Stream stream = response.GetResponseStream())
